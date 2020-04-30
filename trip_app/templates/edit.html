@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link" >Logout!</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1>Hello {{theuser.first_name}} edit your Trip!!</h1>
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> {% endfor %}
+        </ul>
+    {%endif%}
+        <form class="form-group" method="post" action="/submit_edit/{{edit_trip.id}}">
+            {% csrf_token %}
+            Destination: <textarea class="form-control" name="dest" id="new_dest" cols="30" rows="2"></textarea><br>
+            <p></p>
+            Start Date: <input class="form-control" name="start" type="date">
+            <p></p>
+            End Date: <input class="form-control" name="end" type="date">
+            <p></p>
+            Plan:<textarea class="form-control" name="plan" id="plan" cols="30" rows="2"></textarea>
+            <input type="submit" class="btn btn-success">
+            <a href="/dashboard" class="btn btn-primary" role="button">Go Back</a>
+            
+        </form>
+    </div>
+    
+</body>
+</html>

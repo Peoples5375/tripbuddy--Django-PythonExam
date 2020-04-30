@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/trips/new" class="nav-link" >Create a New Trip!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link" >Logout!</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            <h1>Hello {{theuser.first_name}}</h1>
+            <hr>
+            <h4>These are your current Trips:</h4>
+            <table class="table">
+                <thead class="thead-light">
+                    
+                    <tr>
+                        <th>Destination</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Plan</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in trips %}
+                    <tr>
+                        <td><a href="/trips/{{x.id}}">{{x.destination}}</a></td>
+                        <td>{{x.start_date}}</td>
+                        <td>{{x.end_date}}</td>
+                        <td>{{x.plan}}</td>
+                        <td><a href="/remove_trip/{{x.id}}">Remove</a> | <a href="/edit_trip/{{x.id}}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <p></p>
+            
+        </div>
+    </div>
+</body>
+</html>
